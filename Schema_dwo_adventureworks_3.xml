@@ -1,0 +1,108 @@
+<Schema name="New Schema2">
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="sProduct">
+    <Hierarchy name="dim_product" visible="true" hasAll="true" allMemberName="All Product" primaryKey="product_id">
+      <Table name="dim_product">
+      </Table>
+      <Level name="lProduct_id" visible="true" column="product_id" nameColumn="product_id" ordinalColumn="product_id" type="Integer" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="lProductName" visible="true" column="product_id" nameColumn="product_name" ordinalColumn="product_id" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="lStandardcost" visible="true" column="product_id" nameColumn="standard_cost" ordinalColumn="product_id" type="Boolean" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="lListPrice" visible="true" column="product_id" nameColumn="list_price" ordinalColumn="product_id" type="Boolean" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="SProductLocation">
+    <Hierarchy name="dim_product_location" visible="true" hasAll="true" allMemberName="All Location" primaryKey="location_id">
+      <Table name="dim_product_location">
+      </Table>
+      <Level name="lLocation_id" visible="true" column="location_id" nameColumn="location_id" ordinalColumn="location_id" type="Integer" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="lLocationName" visible="true" column="location_id" nameColumn="location_name" ordinalColumn="location_id" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="sPurchase">
+    <Hierarchy name="dim_purchase" visible="true" hasAll="true" allMemberName="All Purchase" primaryKey="purchase_order_id">
+      <Table name="dim_purchase">
+      </Table>
+      <Level name="lUnitPrice" visible="true" column="purchase_order_id" nameColumn="unit_price" ordinalColumn="purchase_order_id" type="Boolean" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="sShipMethod">
+    <Hierarchy name="dim_ship_method" visible="true" hasAll="true" allMemberName="All Ship Method" primaryKey="ship_method_id">
+      <Table name="dim_ship_method">
+      </Table>
+      <Level name="lShipMethodName" visible="true" column="ship_method_id" nameColumn="ship_method_name" ordinalColumn="ship_method_id" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="sTime">
+    <Hierarchy name="dim_time" visible="true" hasAll="true" allMemberName="All Time" primaryKey="time_id">
+      <Table name="dim_time">
+      </Table>
+      <Level name="lYear" visible="true" column="time_id" nameColumn="year" ordinalColumn="time_id" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="lMonth" visible="true" column="time_id" nameColumn="month" ordinalColumn="time_id" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="lDay" visible="true" column="time_id" nameColumn="day" ordinalColumn="time_id" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="lDayName" visible="true" column="time_id" nameColumn="dayname" ordinalColumn="time_id" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="sVendor">
+    <Hierarchy name="dim_vendor" visible="true" hasAll="true" allMemberName="All Vendor" primaryKey="vendor_id">
+      <Table name="dim_vendor">
+      </Table>
+      <Level name="lVendorName" visible="true" column="vendor_id" nameColumn="vendor_name" ordinalColumn="vendor_id" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="sVendorAddress">
+    <Hierarchy name="dim_vendor_address" visible="true" hasAll="true" allMemberName="All Vendor Address" primaryKey="address_id">
+      <Table name="dim_vendor_address">
+      </Table>
+      <Level name="lAddress_id" visible="true" column="address_id" nameColumn="address_id" ordinalColumn="address_id" type="Integer" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="lAddressLine" visible="true" column="address_id" nameColumn="address_line" ordinalColumn="address_id" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="lCity" visible="true" column="address_id" nameColumn="city" ordinalColumn="address_id" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="lProvince_id" visible="true" column="province_id" nameColumn="province_id" ordinalColumn="address_id" type="Integer" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="cProduction" visible="true" cache="true" enabled="true">
+    <Table name="fact_production">
+    </Table>
+    <DimensionUsage source="sProduct" name="dProduct" visible="true" foreignKey="product_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="sVendor" name="dVendor" visible="true" foreignKey="vendor_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="SProductLocation" name="dLocation" visible="true" foreignKey="location_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="sTime" name="dTime" visible="true" foreignKey="time_id" highCardinality="false">
+    </DimensionUsage>
+    <Measure name="mQuantity" column="quantity" formatString="#,###" aggregator="sum" visible="true">
+    </Measure>
+  </Cube>
+  <Cube name="cPurchasing" visible="true" cache="true" enabled="true">
+    <Table name="fact_purchasing">
+    </Table>
+    <DimensionUsage source="sPurchase" name="dPurchase" visible="true" foreignKey="purchase_order_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="sVendor" name="dVendor" visible="true" foreignKey="vendor_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="sShipMethod" name="dShipmethod" visible="true" foreignKey="ship_method_id" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="sTime" name="dTime" visible="true" foreignKey="time_id" highCardinality="false">
+    </DimensionUsage>
+    <Measure name="mOrderqty" column="order_qty" formatString="#,###" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="mTotaldue" column="total_due" formatString="USD#,###" aggregator="sum" visible="true">
+    </Measure>
+  </Cube>
+</Schema>
